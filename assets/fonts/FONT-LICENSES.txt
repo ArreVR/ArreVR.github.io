@@ -1,0 +1,2 @@
+IsITInk: letters cut by ArtSource/make_ink_font.py from Fredoka.
+Fredoka: Copyright 2016 The Fredoka Project Authors (https://github.com/hafontia/Fredoka-One). SIL Open Font License 1.1, see Fredoka-OFL.txt.

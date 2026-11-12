@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IsIT – Cloudy Studios</title>
+  <meta name="description" content="IsIT by Cloudy Studios: a hand-drawn multiplayer sandbox. Build it. Break it.">
+  <link rel="icon" href="assets/icons/burst.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- The shaky ink: every outline on the page is pushed around by this noise, and the noise changes 12 times a second
+       (script.js), like the game's drawn look. -->
+  <svg class="defs" aria-hidden="true">
+    <filter id="boil" x="-4%" y="-8%" width="108%" height="116%">
+      <feTurbulence id="boilNoise" type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="1" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="boilBig" x="-4%" y="-8%" width="108%" height="116%">
+      <feTurbulence id="boilNoiseBig" type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="1" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <!-- ===== Intro: the Cloudy logo, like when the game starts ===== -->
+  <div class="intro" id="intro">
+    <div class="intro-drops" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <img src="assets/CloudyLogo.png" alt="Cloudy" class="intro-logo boil-img">
+    <div class="intro-by">BY ARRE</div>
+    <div class="intro-skip">click to skip</div>
+  </div>
+
+  <!-- ===== Top bar ===== -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav-brand" aria-label="Cloudy Studios">
+      <img src="assets/CloudyLogo.png" alt="Cloudy Studios" class="boil-img">
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#game">The game</a>
+      <a href="#inside">What's inside</a>
+      <a href="#tracks">Tracks</a>
+      <a href="#shots">Screenshots</a>
+      <a href="#faq">FAQ</a>
+      <a href="#download" class="ink-btn small gold"><span>Download</span></a>
+    </nav>
+    <button class="burger ink" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <!-- ===== Hero: the game's own menu (dark doodle side with the logo, the world on the right) ===== -->
+  <section class="hero" id="top">
+    <div class="hero-world">
+      <img src="assets/shots/forest_hero.jpg" alt="Your character in the Forest">
+      <div class="world-stickers" aria-hidden="true">
+        <img src="assets/boom.png" class="sticker boom boil-img" alt="">
+        <img src="assets/icons/heart.png" class="sticker s-heart" alt="">
+        <img src="assets/icons/coin.png" class="sticker s-coin" alt="">
+        <img src="assets/icons/star.png" class="sticker s-star" alt="">
+      </div>
+    </div>
+
+    <div class="hero-side">
+      <div class="tear-paper" data-tear="right"></div>
+      <div class="tear-dark doodles" data-tear="right"></div>
+      <div class="hero-menu">
+        <div class="hero-logo">
+          <img src="assets/logo.png" alt="IsIT" class="boil-img-big">
+          <div class="ribbon"><span>BUILD IT. BREAK IT.</span></div>
+        </div>
+        <p class="hero-text">A hand-drawn multiplayer sandbox. Build crazy machines, race them, blow them up and make your own games.</p>
+        <div class="menu-buttons">
+          <a href="#download" class="menu-btn gold big"><img src="assets/icons/ui_play.png" alt=""><span id="heroDownloadText">PLAY FREE</span></a>
+          <a href="#inside" class="menu-btn rose"><img src="assets/icons/ui_build.png" alt=""><span>WHAT'S INSIDE</span></a>
+          <a href="#tracks" class="menu-btn teal"><img src="assets/icons/drive.png" alt=""><span>RACE TRACKS</span></a>
+          <a href="#shots" class="menu-btn yellow"><img src="assets/icons/ui_photo.png" alt=""><span>SCREENSHOTS</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Ribbon ===== -->
+  <div class="tape" aria-hidden="true">
+    <div class="tape-track">
+      <span>BUILD IT</span><img src="assets/icons/star.png" alt=""><span>BREAK IT</span><img src="assets/icons/burst.png" alt="">
+      <span>RACE IT</span><img src="assets/icons/star.png" alt=""><span>PAINT IT</span><img src="assets/icons/heart.png" alt="">
+      <span>SHARE IT</span><img src="assets/icons/coin.png" alt=""><span>BUILD IT</span><img src="assets/icons/star.png" alt="">
+      <span>BREAK IT</span><img src="assets/icons/burst.png" alt=""><span>RACE IT</span><img src="assets/icons/star.png" alt="">
+      <span>PAINT IT</span><img src="assets/icons/heart.png" alt=""><span>SHARE IT</span><img src="assets/icons/coin.png" alt="">
+    </div>
+  </div>
+
+  <!-- ===== Our game ===== -->
+  <section class="section paper" id="game">
+    <h2 class="banner"><span>OUR GAMES</span></h2>
+
+    <div class="game-window ink reveal">
+      <div class="game-shot">
+        <img src="assets/shots/forest_wide.jpg" alt="The Forest from above">
+        <img src="assets/logo.png" alt="" class="game-shot-logo boil-img">
+        <div class="stamp">OUT NOW!</div>
+      </div>
+      <div class="game-info">
+        <div class="game-title">
+          <h3>IsIT</h3>
+          <span class="by">by Cloudy Studios</span>
+        </div>
+        <div class="pills">
+          <span class="pill gold">SANDBOX</span>
+          <span class="pill teal">MULTIPLAYER</span>
+          <span class="pill rose">FREE</span>
+          <span class="pill yellow">VOICE CHAT</span>
+        </div>
+        <p>Spawn planks, wheels, motors, thrusters and TNT. Weld them into a machine, drive it, and knock it all down again.
+          Build cars in DriveTHATBUILD, make your own obbies, trade builds on the Marketplace and paint your guy in galaxy colours.</p>
+        <div class="counters">
+          <div class="counter ink"><img src="assets/icons/sandbox.png" alt=""><b data-count="100">0</b><small>parts</small></div>
+          <div class="counter ink"><img src="assets/icons/ui_paint.png" alt=""><b data-count="40">0</b><small>paints</small></div>
+          <div class="counter ink"><img src="assets/icons/ui_case.png" alt=""><b data-count="35">0</b><small>skins</small></div>
+          <div class="counter ink"><img src="assets/icons/ui_players.png" alt=""><b data-count="10">0</b><small>a server</small></div>
+        </div>
+        <a href="#download" class="ink-btn gold"><span>GET IsIT</span></a>
+      </div>
+    </div>
+    <p class="soon-note reveal">More games from Cloudy Studios are on the way…</p>
+  </section>
+
+  <!-- ===== What's inside: looks like the game's sandbox menu ===== -->
+  <section class="section doodle-section" id="inside">
+    <h2 class="banner"><span>WHAT'S INSIDE</span></h2>
+
+    <div class="sandbox-window ink reveal">
+      <div class="window-head">
+        <div class="window-title"><span>ISIT</span></div>
+        <p class="window-hint">Pick a tab, or press <b>←</b> <b>→</b></p>
+      </div>
+      <div class="tabs" role="tablist" id="tabs">
+        <button class="tab active" data-tab="0">SANDBOX</button>
+        <button class="tab" data-tab="1">RACING</button>
+        <button class="tab" data-tab="2">CUSTOM GAMES</button>
+        <button class="tab" data-tab="3">STYLE</button>
+        <button class="tab" data-tab="4">MARKET</button>
+        <button class="tab" data-tab="5">HUB</button>
+      </div>
+
+      <div class="tab-pages">
+        <div class="page active">
+          <div class="polaroid"><img src="assets/shots/sandbox_c.jpg" alt="A car, a cube tower, TNT and a ramp built in the Playground"></div>
+          <div class="page-text">
+            <h3>Build anything</h3>
+            <p>Over 100 parts: planks, wheels, motors, pistons, rails, winches and hooks. Weld them, rope them, link buttons to them.</p>
+            <ul class="ticks"><li>Weld, rope, link, freeze, paint &amp; move tools</li><li>Save your builds and load them again</li><li>Pre-built cars to get going fast</li></ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="polaroid"><img src="assets/shots/race_back.jpg" alt="Three home-made cars racing to the gate"></div>
+          <div class="page-text">
+            <h3>DriveTHATBUILD</h3>
+            <p>Two minutes to build a car on your plot. Hit READY, line up at the gates and race everyone to the finish.</p>
+            <ul class="ticks"><li>5 tracks with their own skies</li><li>Ghosts of the fastest laps</li><li>Leaderboards in the Hub</li></ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="polaroid"><img src="assets/shots/studio_side.jpg" alt="A player-made obby over lava with a finish flag"></div>
+          <div class="page-text">
+            <h3>Make your own game</h3>
+            <p>Open the studio, place Start Pads, Finish Pads, coins, lava, lasers and jump pads. Test a round, then publish it for everyone.</p>
+            <ul class="ticks"><li>Obby, coin rush, survival, team modes</li><li>Invite friends to build with you</li><li>Players like the best ones</li></ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="polaroid"><img src="assets/shots/ui_custom.jpg" alt="Customize: hats and special paints"></div>
+          <div class="page-text">
+            <h3>Look the part</h3>
+            <p>Spin the Paint Roll for galaxy, golden and holy paints, open ObjectCases for rare skins and dance with the emote wheel.</p>
+            <ul class="ticks"><li>40 special paints</li><li>35 case skins</li><li>Hats, trails and name colours</li></ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="polaroid"><img src="assets/shots/ui_market.jpg" alt="The Marketplace with builds for sale"></div>
+          <div class="page-text">
+            <h3>The Marketplace</h3>
+            <p>Sell your best builds for chips or keys. Find builds by hashtag and turn them round in 3D before you buy.</p>
+            <ul class="ticks"><li>Chips from playing and quests</li><li>Original builders are protected</li><li>Buy it once, keep it forever</li></ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="polaroid"><img src="assets/shots/ui_hub.jpg" alt="The IsIT Hub season pass"></div>
+          <div class="page-text">
+            <h3>The IsIT Hub</h3>
+            <p>Your season pass, achievements, friends, photo gallery, the weekly build contest and race records, all in one box.</p>
+            <ul class="ticks"><li>30 tiers of rewards</li><li>Vote for the best build every weekend</li><li>Join friends with one click</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card ink" data-go="0"><img src="assets/icons/sandbox.png" alt=""><b>SANDBOX</b><small>Build machines</small></div>
+        <div class="card ink" data-go="1"><img src="assets/icons/drive.png" alt=""><b>RACING</b><small>Build &amp; race</small></div>
+        <div class="card ink" data-go="2"><span class="new">NEW</span><img src="assets/icons/ui_gamepad_plus.png" alt=""><b>GAMES</b><small>Make your own</small></div>
+        <div class="card ink" data-go="3"><img src="assets/icons/ui_paint.png" alt=""><b>STYLE</b><small>Paints &amp; skins</small></div>
+        <div class="card ink" data-go="4"><img src="assets/icons/ui_market.png" alt=""><b>MARKET</b><small>Trade builds</small></div>
+        <div class="card ink" data-go="5"><img src="assets/icons/hub_box.png" alt=""><b>HUB</b><small>Pass &amp; friends</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Tracks ===== -->
+  <section class="section paper" id="tracks">
+    <h2 class="banner"><span>RACE TRACKS</span></h2>
+    <p class="lead">Five tracks in DriveTHATBUILD. Build fast, drive faster.</p>
+    <div class="tracks">
+      <div class="track ink reveal"><img src="assets/icons/sunny_circuit.png" alt=""><b>SUNNY CIRCUIT</b></div>
+      <div class="track ink reveal"><img src="assets/icons/canyon_rally.png" alt=""><b>CANYON RALLY</b></div>
+      <div class="track ink reveal"><img src="assets/icons/frosty_peak.png" alt=""><b>FROSTY PEAK</b></div>
+      <div class="track ink reveal"><img src="assets/icons/neon_city.png" alt=""><b>NEON CITY</b></div>
+      <div class="track ink reveal"><img src="assets/icons/the_backrooms.png" alt=""><b>THE BACKROOMS</b></div>
+    </div>
+  </section>
+
+  <!-- ===== Screenshots ===== -->
+  <section class="section doodle-section" id="shots">
+    <h2 class="banner"><span>SCREENSHOTS</span></h2>
+    <div class="gallery">
+      <button class="shot reveal"><img src="assets/shots/forest_path.jpg" alt="The Forest"><span>THE FOREST</span></button>
+      <button class="shot reveal"><img src="assets/shots/race_front.jpg" alt="Cars on Sunny Circuit"><span>RACE DAY</span></button>
+      <button class="shot reveal"><img src="assets/shots/sandbox_a.jpg" alt="The Playground"><span>THE PLAYGROUND</span></button>
+      <button class="shot reveal"><img src="assets/shots/sandbox_d.jpg" alt="A home-made car up close"><span>BUILD MACHINES</span></button>
+      <button class="shot reveal"><img src="assets/shots/studio_behind.jpg" alt="An obby in the game studio"><span>MAKE AN OBBY</span></button>
+      <button class="shot reveal"><img src="assets/shots/race_plots.jpg" alt="Building a car on your plot"><span>BUILD A CAR</span></button>
+    </div>
+  </section>
+
+  <!-- ===== Download ===== -->
+  <section class="section paper" id="download">
+    <h2 class="banner"><span>DOWNLOAD</span></h2>
+    <p class="lead">IsIT is free. Pick your system:</p>
+    <div class="downloads">
+      <a class="dl ink reveal" data-os="windows" href="#">
+        <span class="for-you">FOR YOU!</span>
+        <svg class="os" viewBox="0 0 64 64"><path d="M8 14l20-3v19H8zM32 10.5 56 7v23H32zM8 34h20v19l-20-3zM32 34h24v23l-24-3.5z"/></svg>
+        <h3>WINDOWS</h3>
+        <p>The IsIT Launcher keeps the game up to date.</p>
+        <span class="ink-btn gold"><span class="dl-label">DOWNLOAD</span></span>
+      </a>
+      <a class="dl ink reveal" data-os="linux" href="#">
+        <span class="for-you">FOR YOU!</span>
+        <svg class="os" viewBox="0 0 64 64"><path d="M32 6c-6 0-9 5-9 12 0 4 1 7-2 11-4 5-8 11-7 17 1 4 3 5 5 7 2 3 4 7 9 7 3 0 4-2 5-2s2 2 5 2c5 0 7-4 9-7 2-2 4-3 5-7 1-6-3-12-7-17-3-4-2-7-2-11 0-7-3-12-9-12z"/><circle cx="27" cy="19" r="3" class="hole"/><circle cx="37" cy="19" r="3" class="hole"/><path d="M27 26q5 4 10 0" class="hole-line"/></svg>
+        <h3>LINUX</h3>
+        <p>For Ubuntu, Mint, Arch and more.</p>
+        <span class="ink-btn teal"><span class="dl-label">DOWNLOAD</span></span>
+      </a>
+      <a class="dl ink reveal" data-os="android" href="#">
+        <span class="for-you">FOR YOU!</span>
+        <svg class="os" viewBox="0 0 64 64"><path d="M16 26h32v20a4 4 0 0 1-4 4h-3v7a3 3 0 0 1-6 0v-7h-6v7a3 3 0 0 1-6 0v-7h-3a4 4 0 0 1-4-4zM9 26a3 3 0 0 1 3 3v12a3 3 0 0 1-6 0V29a3 3 0 0 1 3-3zm46 0a3 3 0 0 1 3 3v12a3 3 0 0 1-6 0V29a3 3 0 0 1 3-3zM16 23c0-6 4-10 9-12l-3-5 2-1 3 5c2-1 3-1 5-1s3 0 5 1l3-5 2 1-3 5c5 2 9 6 9 12z"/><circle cx="25" cy="17" r="2" class="hole"/><circle cx="39" cy="17" r="2" class="hole"/></svg>
+        <h3>ANDROID</h3>
+        <p>Phones and tablets.</p>
+        <span class="ink-btn rose"><span class="dl-label">DOWNLOAD</span></span>
+      </a>
+    </div>
+
+    <div class="specs ink reveal">
+      <h3>WHAT YOU NEED (WINDOWS)</h3>
+      <div class="spec-grid">
+        <div><b>SYSTEM</b><span>Windows 10 / 11, 64-bit</span></div>
+        <div><b>MEMORY</b><span>8 GB RAM</span></div>
+        <div><b>GRAPHICS</b><span>GTX 960 / RX 470 or better</span></div>
+        <div><b>SPACE</b><span>3 GB</span></div>
+        <div><b>INTERNET</b><span>To play online</span></div>
+        <div><b>CONTROLS</b><span>Keyboard &amp; mouse or a gamepad</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section paper" id="faq">
+    <h2 class="banner"><span>QUESTIONS</span></h2>
+    <div class="faq">
+      <div class="q ink reveal"><button class="q-head">Is IsIT free?<i class="plus">+</i></button>
+        <div class="q-body"><p>Yes! Everything you need to play is free. Chips come from playing, daily rewards and quests.</p></div></div>
+      <div class="q ink reveal"><button class="q-head">Can I play with my friends?<i class="plus">+</i></button>
+        <div class="q-body"><p>Add them in the IsIT Hub, then invite them to your server or join theirs. You can also share the room code.</p></div></div>
+      <div class="q ink reveal"><button class="q-head">Does it work with a controller?<i class="plus">+</i></button>
+        <div class="q-body"><p>Yes. Xbox and PlayStation pads work in the game and in every menu.</p></div></div>
+      <div class="q ink reveal"><button class="q-head">How do I move my account to another computer?<i class="plus">+</i></button>
+        <div class="q-body"><p>Open the IsIT Launcher → Settings → Link this account, and paste the code on the new computer.</p></div></div>
+      <div class="q ink reveal"><button class="q-head">Is it safe for kids?<i class="plus">+</i></button>
+        <div class="q-body"><p>The chat has a swear filter and voice chat has automatic moderation. Players can mute and report others.</p></div></div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer doodles">
+    <img src="assets/CloudyLogo.png" alt="Cloudy" class="footer-logo boil-img">
+    <div class="footer-by">BY ARRE</div>
+    <div class="footer-links"><a href="#game">The game</a><a href="#download">Download</a><a href="#faq">FAQ</a></div>
+    <p class="copy">© <span id="year"></span> Cloudy Studios</p>
+  </footer>
+
+  <!-- Screenshot viewer -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-frame ink"><img id="lightboxImg" alt=""><button class="lightbox-close" aria-label="Close">✕</button></div>
+  </div>
+
+  <button class="to-top ink" id="toTop" aria-label="Back to top"><img src="assets/icons/ui_up.png" alt=""></button>
+
+  <script src="script.js"></script>
+</body>
+</html>
