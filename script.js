@@ -2,8 +2,11 @@
 const DOWNLOADS = {
   windows: "https://github.com/ArreVR/Game/releases/latest", // the IsIT Launcher
   linux: "",
-  android: ""
+  // The phone version: the APK in the GitHub release "android" (the app updates itself from there). The card switches
+  // itself on as soon as that release has IsIT.apk (see below), so the link is never dead.
+  android: "https://github.com/ArreVR/Game/releases/download/android/IsIT.apk"
 };
+const ANDROID_RELEASE_API = "https://api.github.com/repos/ArreVR/Game/releases/tags/android";
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -84,22 +87,42 @@ function detectOS() {
   return null;
 }
 const myOS = detectOS();
+function cardReady(card, url) {
+  card.classList.remove("soon");
+  card.href = url;
+  card.target = "_blank";
+  card.rel = "noopener";
+  card.querySelector(".dl-label").textContent = "DOWNLOAD";
+}
+function cardSoon(card, os) {
+  card.classList.add("soon");
+  card.removeAttribute("href");
+  card.querySelector(".dl-label").textContent = "COMING SOON";
+  card.addEventListener("click", e => {
+    if (card.classList.contains("soon")) { e.preventDefault(); toast(`IsIT for ${osNames[os]} is on the way!`); }
+  });
+}
 document.querySelectorAll(".dl").forEach(card => {
   const os = card.dataset.os;
   const url = DOWNLOADS[os];
   if (os === myOS) card.classList.add("mine");
-  if (url) {
-    card.href = url;
-    card.target = "_blank";
-    card.rel = "noopener";
-  } else {
-    card.classList.add("soon");
-    card.removeAttribute("href");
-    card.querySelector(".dl-label").textContent = "COMING SOON";
-    card.addEventListener("click", () => toast(`IsIT for ${osNames[os]} is on the way!`));
-  }
+  if (!url) { cardSoon(card, os); return; }
+  if (os !== "android") { cardReady(card, url); return; }
+  // Android: only once the APK is really in the release (else "Coming soon").
+  cardSoon(card, os);
+  fetch(ANDROID_RELEASE_API, { headers: { Accept: "application/vnd.github+json" } })
+    .then(r => (r.ok ? r.json() : null))
+    .then(release => {
+      const apk = release && (release.assets || []).find(a => a.name === "IsIT.apk");
+      if (!apk) return;
+      cardReady(card, apk.browser_download_url || url);
+      const note = card.querySelector("p");
+      if (note) note.textContent = `Phones and tablets · ${Math.round(apk.size / 1048576)} MB · updates itself`;
+      if (myOS === "android") document.getElementById("heroDownloadText").textContent = "PLAY ON ANDROID";
+    })
+    .catch(() => { /* offline or GitHub busy: stays "Coming soon" */ });
 });
-if (myOS && DOWNLOADS[myOS]) document.getElementById("heroDownloadText").textContent = `PLAY ON ${osNames[myOS]}`;
+if (myOS && myOS !== "android" && DOWNLOADS[myOS]) document.getElementById("heroDownloadText").textContent = `PLAY ON ${osNames[myOS]}`;
 
 // ============ Phone menu ============
 const navLinks = document.getElementById("navLinks");
